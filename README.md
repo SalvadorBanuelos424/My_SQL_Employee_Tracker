@@ -1,4 +1,5 @@
 # Employee Tracker MySQL, Inc,
+https://github.com/SalvadorBanuelos424/My_SQL_Employee_Tracker
 
 ![Badge](https://img.shields.io/badge/License-${license}-blue)
 
