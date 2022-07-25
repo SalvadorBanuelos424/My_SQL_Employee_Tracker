@@ -22,7 +22,12 @@ Facilitate the storage, retrieval, modification and deletion of data.  Deletion 
   - [Email](#email)
   
 ## Installation
-Clone git repository, type in terminal "npm i" to install node-modules
+Clone git repository, type in terminal "npm i" to install node-modules.
+in terminal type "mysql -u root -p" then password "3149".
+type in mysql CLI "use work;" to choose the database, 
+type "source db/schema.sql;" to set schema and "source db/seeds.sql;" to set seeds
+type "\q" to exit back into terminal and type "node index.js" to initiate prompts.
+Follow prompts accordingly to view, and add to the work database.
 
 ## Built With 
 * JS
