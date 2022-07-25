@@ -7,7 +7,7 @@ VALUES
     ('Floor Technician');
 
 /*data for roles table*/
-INSERT INTO roles (title, salary, department_id)
+INSERT INTO role (title, salary, department_id)
 VALUES
     ('Lead Human Resource', 81000, 1),
     ('Human Resources', 61000, 1),
@@ -27,16 +27,16 @@ VALUES
     ('Beatriz', 'Beth', 2, 1),
     ('Carlos', 'Calhun', 3, NULL),
     ('David', 'Dokneehue', 4, 3),
-    ('Elizabeth', 'Einstein', 5, 3),
-    ('Frank', 'Further', 6, 3),
-    ('Gabrial', 'Gabbstone', 7, 3),
-    ('Heather', 'Hung', 8, 3),
-    ('Isabelle', 'Inome', 9, 3),
-    ('Javier', 'Julios', 10, NULL),
-    ('Kenny', 'Kruzinsky', 11, 10),
-    ('Lucy', 'Lawller', 12, 10),
-    ('Monica', 'Moore', 13, 10),
-    ('Nadia', 'Nottinhouse', 14, NULL),
-    ('Oprah', 'Oneil', 15, 14),
-    ('Prince', 'Pricket', 16, 14),
-    ('Rick', 'Rubios', 17, 14);
+    ('Elizabeth', 'Einstein', 4, 3),
+    ('Frank', 'Further', 4, 3),
+    ('Gabrial', 'Gabbstone', 4, 3),
+    ('Heather', 'Hung', 4, 3),
+    ('Isabelle', 'Inome', 4, 3),
+    ('Javier', 'Julios', 5, NULL),
+    ('Kenny', 'Kruzinsky', 6, 10),
+    ('Lucy', 'Lawller', 6, 10),
+    ('Monica', 'Moore', 6, 10),
+    ('Nadia', 'Nottinhouse', 7, NULL),
+    ('Oprah', 'Oneil', 8, 14),
+    ('Prince', 'Pricket', 8, 14),
+    ('Rick', 'Rubios', 8, 14);

@@ -45,7 +45,7 @@ const prompt = async () => {
 // use mysql to get 'departments' table
 const departments = () => {
     db.query(
-        'SELECT * FROM departments;',
+        'SELECT * FROM department;',
         (err, results) => {console.table(results);
             prompt();
         });
@@ -55,7 +55,7 @@ const departments = () => {
 // use mysql to get 'roles' table
 const roles = () => {
     db.query(
-        'SELECT * FROM roles;',
+        'SELECT * FROM role;',
         (err, results) => {console.table(results);
             prompt();
         })
@@ -65,7 +65,7 @@ const roles = () => {
 // use mysql to get 'employees' table
 const employees = () => {
     db.query(
-        'SELECT id, first_name, last_name, manager_id FROM employees;',
+        'SELECT id, first_name, last_name, manager_id FROM employee;',
         (err, results) => {console.table(results);
         prompt();
         })
@@ -90,7 +90,7 @@ const departmentAdd = () => {
         }
     ])
         .then(name => {
-            db.promise().query("INSERT INTO departments SET ?", name);
+            db.promise().query("INSERT INTO department SET ?", name);
             departments();
         })
 }
@@ -140,7 +140,7 @@ const roleAdd = () => {
         }
     ])
     .then(({ title, salary, department_id }) => {
-        db.promise().query("INSERT INTO roles SET ?",
+        db.promise().query("INSERT INTO role SET ?",
             {
                 title: title, 
                 salary: salary, 
@@ -153,7 +153,7 @@ const roleAdd = () => {
 
 // prompt user to create a new employee for 'employees' table. [add first_name, last_name, role_id, & ability to add a manager_id]
 const employeeAdd = () => {
-    db.query('SELECT * FROM employees;',(err, results) => {
+    db.query('SELECT * FROM employee;',(err, results) => {
         if (err) throw err;
     inquirer.prompt([
     {
@@ -186,8 +186,8 @@ const employeeAdd = () => {
         type: "list",
         name: "role_id",
         message: "Select title role number",
-        choices: results.map(roles => {
-            return { name: roles.role_id, value: roles.role_id }
+        choices: results.map(role => {
+            return { name: role.role_id, value: role.role_id }
         })
     }, 
     {
@@ -204,7 +204,7 @@ const employeeAdd = () => {
         }
     }])
     .then(({ first_name, last_name, role_id, manager_id }) => {
-        db.promise().query("INSERT INTO employees SET ?",
+        db.promise().query("INSERT INTO employee SET ?",
             {
                 first_name: first_name,
                 last_name: last_name,
@@ -219,9 +219,9 @@ const employeeAdd = () => {
 
 // prompt user to change an employees 'role'. [choose role, add replacement role, & add replacement salary.]
 const roleUpdate = () => {
-    return db.promise().query("SELECT id, title, salary, department_id FROM roles;")
-    .then(([roles]) => {
-        let update = roles.map(({ id, title }) => ({ value: id, name: title }));
+    return db.promise().query("SELECT id, title, salary, department_id FROM role;")
+    .then(([role]) => {
+        let update = role.map(({ id, title }) => ({ value: id, name: title }));
         inquirer.prompt([
             {
                 type: 'list',
@@ -230,8 +230,7 @@ const roleUpdate = () => {
                 choices: update
             }
         ])
-        .then(roles => {
-        console.log(roles);
+        .then(role => {
         inquirer.prompt([
             {
                 type: 'input',
@@ -260,7 +259,7 @@ const roleUpdate = () => {
                 }
             }])
             .then(({ title, salary }) => {
-                const query = db.query('UPDATE roles SET title = ?, salary = ? WHERE id = ?', [title, salary, roles.role],
+                const query = db.query('UPDATE role SET title = ?, salary = ? WHERE id = ?', [title, salary, role.id],
                 function (err, res) {
                     if (err) throw err;
                 }
